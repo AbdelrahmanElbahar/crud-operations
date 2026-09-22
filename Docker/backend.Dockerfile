@@ -6,11 +6,16 @@ RUN a2enmod rewrite
 
 COPY backend/ /var/www/backend/
 
+# Set Apache DocumentRoot
 RUN sed -i 's#DocumentRoot /var/www/html#DocumentRoot /var/www/backend#' \
     /etc/apache2/sites-available/000-default.conf
 
-RUN sed -i 's#/var/www/html#/var/www/backend#g' \
-    /etc/apache2/apache2.conf
+# Allow Apache to access the backend directory
+RUN printf '<Directory /var/www/backend>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride All\n\
+    Require all granted\n\
+</Directory>\n' >> /etc/apache2/apache2.conf
 
 RUN mkdir -p \
     /var/www/backend/uploads/users \
