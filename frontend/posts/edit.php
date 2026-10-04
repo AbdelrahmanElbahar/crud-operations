@@ -11,7 +11,7 @@ if (!$id) {
 
 
 // Get blogs
-$blogsResponse = @file_get_contents("http://backend/api/blogs.php");
+$blogsResponse = @file_get_contents("http://backend/api/blogs");
 
 $blogsResult = [];
 
@@ -24,7 +24,7 @@ $blogs = $blogsResult['data'] ?? [];
 
 // Get current post
 $postResponse = @file_get_contents(
-    "http://backend/api/posts.php?id=" . urlencode($id)
+    "http://backend/api/posts/" . urlencode($id)
 );
 
 $postResult = [];
@@ -46,12 +46,12 @@ if (!$post) {
 // Handle update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $backend = "http://backend/api/posts.php";
+    $backend = "http://backend/api/posts";
 
-    $ch = curl_init($backend);
+    $ch = curl_init($backend . "/" . urlencode($id));
 
     $postData = [
-        'id'      => $id,
+        '_method' => 'PUT',
         'blog_id' => $_POST['blog_id'] ?? '',
         'title'   => $_POST['title'] ?? '',
         'content' => $_POST['content'] ?? ''

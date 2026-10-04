@@ -12,7 +12,7 @@ if (!$id) {
     exit;
 }
 
-$backend = "http://backend/api/users.php?id=" . urlencode($id);
+$backend = "http://backend/api/users/" . urlencode($id);
 
 $ch = curl_init($backend);
 

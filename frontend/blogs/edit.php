@@ -7,7 +7,7 @@ if (!$id) {
     exit;
 }
 
-$backend = "http://backend/api/blogs.php";
+$backend = "http://backend/api/blogs";
 
 $message = "";
 
@@ -17,7 +17,7 @@ $message = "";
 // =========================
 
 $usersResponse = @file_get_contents(
-    "http://backend/api/users.php"
+    "http://backend/api/users"
 );
 
 $usersResult = [];
@@ -37,7 +37,7 @@ $users = $usersResult['data'] ?? [];
 // =========================
 
 $response = @file_get_contents(
-    $backend . "?id=" . urlencode($id)
+    $backend . "/" . urlencode($id)
 );
 
 $blogResult = [];
@@ -62,10 +62,10 @@ if (!$blog) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $ch = curl_init($backend);
+    $ch = curl_init($backend . "/" . urlencode($id));
 
     $postData = [
-        'id' => $id,
+        '_method' => 'PUT',
         'user_id' => $_POST['user_id'] ?? '',
         'title' => $_POST['title'] ?? '',
         'description' => $_POST['description'] ?? ''

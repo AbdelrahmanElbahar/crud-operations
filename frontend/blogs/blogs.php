@@ -1,6 +1,6 @@
 <?php
 
-$backend = "http://backend/api/blogs.php";
+$backend = "http://backend/api/blogs";
 
 $response = @file_get_contents($backend);
 

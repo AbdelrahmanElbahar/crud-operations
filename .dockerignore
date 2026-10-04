@@ -1,0 +1,12 @@
+.git
+backend-old
+
+# The image runs its own composer install; secrets come from compose at runtime
+backend/vendor
+backend/node_modules
+backend/.env
+
+# Local caches list dev-only packages (pail, collision) that --no-dev skips
+backend/bootstrap/cache/*.php
+backend/storage/logs/*.log
+backend/public/uploads

@@ -8,7 +8,7 @@ $message = "";
 // =========================
 
 $usersResponse = @file_get_contents(
-    "http://backend/api/users.php"
+    "http://backend/api/users"
 );
 
 $usersResult = [];
@@ -30,7 +30,7 @@ $users = $usersResult['data'] ?? [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $backend =
-        "http://backend/api/blogs.php";
+        "http://backend/api/blogs";
 
     $ch = curl_init($backend);
 

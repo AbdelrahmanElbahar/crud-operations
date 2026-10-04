@@ -5,6 +5,15 @@ services:
       context: ..
       dockerfile: Docker/backend.Dockerfile
     container_name: crud_backend
+    # Laravel settings (APP_KEY, DB_*) come from backend/.env ...
+    env_file:
+      - ../backend/.env
+    # ... except the DB host: inside Docker, MySQL is the "db" container, not 127.0.0.1
+    environment:
+      DB_HOST: db
+    # Uploaded images live on the host so rebuilding the image never deletes them
+    volumes:
+      - ../backend/public/uploads:/var/www/backend/public/uploads
     ports:
       - "8082:80"
     depends_on:
@@ -33,7 +42,6 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ../database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
 

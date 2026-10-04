@@ -3,7 +3,7 @@
 $message = "";
 
 // Get blogs from backend
-$blogsResponse = @file_get_contents("http://backend/api/blogs.php");
+$blogsResponse = @file_get_contents("http://backend/api/blogs");
 
 $blogsResult = [];
 
@@ -17,7 +17,7 @@ $blogs = $blogsResult['data'] ?? [];
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $backend = "http://backend/api/posts.php";
+    $backend = "http://backend/api/posts";
 
     $ch = curl_init($backend);
 
