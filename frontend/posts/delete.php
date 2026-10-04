@@ -18,7 +18,7 @@ if (!$id) {
 
 
 $backend =
-    "http://backend/api/posts.php?id=" .
+    "http://backend/api/posts/" .
     urlencode($id);
 
 

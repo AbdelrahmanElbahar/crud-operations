@@ -7,7 +7,7 @@ if (!$id) {
     exit;
 }
 
-$backend = "http://backend/api/users.php";
+$backend = "http://backend/api/users";
 
 $message = "";
 
@@ -17,7 +17,7 @@ $message = "";
 // =========================
 
 $response = @file_get_contents(
-    $backend . "?id=" . urlencode($id)
+    $backend . "/" . urlencode($id)
 );
 
 $userResult = [];
@@ -39,10 +39,10 @@ if (!$user) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $ch = curl_init($backend);
+    $ch = curl_init($backend . "/" . urlencode($id));
 
     $postData = [
-        'id' => $id,
+        '_method' => 'PUT',
         'name' => $_POST['name'] ?? '',
         'email' => $_POST['email'] ?? ''
     ];

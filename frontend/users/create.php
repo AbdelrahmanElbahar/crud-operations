@@ -4,7 +4,7 @@ $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $backend = "http://backend/api/users.php";
+    $backend = "http://backend/api/users";
 
     $ch = curl_init($backend);
 

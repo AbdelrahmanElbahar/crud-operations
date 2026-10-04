@@ -1,6 +1,6 @@
 <?php
 
-$backend = "http://backend/api/users.php";
+$backend = "http://backend/api/users";
 
 $response = @file_get_contents($backend);
 

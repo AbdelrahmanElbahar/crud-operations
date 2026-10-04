@@ -15,9 +15,9 @@ function getData($url)
     return $result['data'] ?? [];
 }
 
-$users = getData($backend . "/api/users.php");
-$blogs = getData($backend . "/api/blogs.php");
-$posts = getData($backend . "/api/posts.php");
+$users = getData($backend . "/api/users");
+$blogs = getData($backend . "/api/blogs");
+$posts = getData($backend . "/api/posts");
 
 ?>
 
